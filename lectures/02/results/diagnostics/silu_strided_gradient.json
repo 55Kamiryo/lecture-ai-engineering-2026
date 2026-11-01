@@ -1,0 +1,30 @@
+[
+  {
+    "channels": 4,
+    "output_relative_error": 6.369097604874696e-08,
+    "gradient_relative_error": 3.5684988498687744,
+    "cpu_grad_norm": 55.1553840637207,
+    "mps_grad_norm": 190.70127868652344
+  },
+  {
+    "channels": 16,
+    "output_relative_error": 6.346162706449832e-08,
+    "gradient_relative_error": 3.0722239017486572,
+    "cpu_grad_norm": 87.79798126220703,
+    "mps_grad_norm": 254.40667724609375
+  },
+  {
+    "channels": 128,
+    "output_relative_error": 6.419045206484952e-08,
+    "gradient_relative_error": 2.953404426574707,
+    "cpu_grad_norm": 238.44961547851562,
+    "mps_grad_norm": 661.3759155273438
+  },
+  {
+    "channels": 6144,
+    "output_relative_error": 6.324309254068794e-08,
+    "gradient_relative_error": 3.054309129714966,
+    "cpu_grad_norm": 1732.1531982421875,
+    "mps_grad_norm": 5001.5234375
+  }
+]
