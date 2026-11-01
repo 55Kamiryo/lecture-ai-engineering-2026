@@ -1,0 +1,58 @@
+{
+  "name": "baseline",
+  "started_at_utc": "2026-10-31T12:29:04.682550+00:00",
+  "platform": "macOS-14.5-arm64-arm-64bit",
+  "notebook_sha256": "2edcfb6d1461dabdbfea8242a7ae4ec7c231f4d2e5cec61920a4317ce8694b00",
+  "versions": {
+    "torch": "2.11.0",
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "accelerate": "1.15.0",
+    "datasets": "5.1.0"
+  },
+  "local_changes": [
+    "local output directory",
+    "explicit fp16=False and bf16=False",
+    "per-step numeric checks and logging"
+  ],
+  "status": "completed",
+  "before": {
+    "label": "before",
+    "n": 21,
+    "format_rate": 0.09523809523809523,
+    "content_rate": 0.0,
+    "both_rate": 0.0,
+    "seconds": 36.2
+  },
+  "actual_training_args": {
+    "device": "mps",
+    "fp16": false,
+    "bf16": false,
+    "mixed_precision": "no",
+    "batch_size": 4,
+    "gradient_accumulation_steps": 2,
+    "learning_rate": 0.0002,
+    "epochs": 20
+  },
+  "latest_training_log": {
+    "step": 40,
+    "train_runtime": 1038.9864,
+    "train_samples_per_second": 0.269,
+    "train_steps_per_second": 0.038,
+    "total_flos": 221402196196608.0,
+    "train_loss": 3.75126975774765,
+    "epoch": 20.0
+  },
+  "training": {
+    "global_steps": 40,
+    "epochs": 20.0,
+    "seconds": 1038.9864,
+    "final_logged_loss": 5.8066840171813965,
+    "average_training_loss": 3.75126975774765,
+    "trainable_parameters": 6389760,
+    "total_parameters": 758782784,
+    "train_and_save_seconds": 1039.61
+  },
+  "finished_at_utc": "2026-10-31T12:49:07.214758+00:00"
+}

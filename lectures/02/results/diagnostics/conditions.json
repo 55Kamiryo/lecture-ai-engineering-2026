@@ -1,0 +1,26 @@
+{
+  "purpose": "Single-example backward diagnosis; not a training run or homework comparison",
+  "model": "Qwen/Qwen3.5-0.8B",
+  "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "notebook_sha256": "2edcfb6d1461dabdbfea8242a7ae4ec7c231f4d2e5cec61920a4317ce8694b00",
+  "versions": {
+    "torch": "2.11.0",
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "accelerate": "1.15.0",
+    "datasets": "5.1.0"
+  },
+  "platform": "macOS-14.5-arm64-arm-64bit",
+  "seed": 42,
+  "threads": 4,
+  "data": "First training question only, 263 tokens, no evaluation questions",
+  "precision": "float32, no mixed precision",
+  "dropout": "disabled via model.eval(); autograd enabled",
+  "loss": "SFTTrainer loss_type=nll; full training runs use the notebook default",
+  "optimizer_updates": 0,
+  "script": "scripts/diagnose_lora_backward.py",
+  "partial_cpu_trials": "chunk, conv, and rms each offload only that operation to CPU; none resolved the large gradient norm",
+  "full_model_silu_trial": "Incoming gradients to SiLU were made contiguous via a hook; still large full-model gradient norm, not adopted for training.",
+  "timing_note": "Diagnostics are correctness checks, not performance benchmarks. Some small additional probes ran alongside CPU training."
+}
