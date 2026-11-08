@@ -40,3 +40,14 @@ def test_glossary_result_reaches_the_model():
         result = agent.run_sync("RAGとは？")
     returns = _parts(result, ToolReturnPart)
     assert returns and returns[0].tool_name == "search_glossary"
+
+
+def test_make_quiz_is_registered_and_its_result_reaches_the_model():
+    model = TestModel(call_tools=["make_quiz"])
+    with agent.override(model=model):
+        result = agent.run_sync("確認問題を1問出して")
+    calls = _parts(result, ToolCallPart)
+    returns = _parts(result, ToolReturnPart)
+    assert len(calls) == len(returns) == 1
+    assert calls[0].tool_name == returns[0].tool_name == "make_quiz"
+    assert returns[0].content

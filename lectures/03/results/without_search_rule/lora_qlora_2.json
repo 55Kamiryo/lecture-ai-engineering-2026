@@ -1,0 +1,35 @@
+{
+  "question_id": "lora_qlora",
+  "question": "LoRAとQLoRAの違いは？",
+  "repeat": 2,
+  "command": [
+    "python",
+    "-m",
+    "app.agent",
+    "--trace",
+    "LoRAとQLoRAの違いは？"
+  ],
+  "started_at_utc": "2026-11-08T09:33:01.114641+00:00",
+  "finished_at_utc": "2026-11-08T09:33:04.396897+00:00",
+  "seconds": 3.282,
+  "returncode": 0,
+  "stdout": "[model] gemini-3.5-flash-lite\nLoRAとQLoRAの違いは以下の通りです。\n\n* **LoRA**: 事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習する手法です。学習するパラメータが少なく、アダプタを小さいファイルで保存できます。\n* **QLoRA**: ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAによる学習を行う手法です。これにより、より大きなモデルを小さなGPUでも扱えるようになります。\n\n関係する回：第2回\n\n--- trace ---\n[tool call]   search_glossary({'query': 'LoRA'})\n[tool call]   search_glossary({'query': 'QLoRA'})\n[tool return] search_glossary -> [{\"term\": \"LoRA\", \"lecture\": 2, \"definition\": \"事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法。学習するパラ…\n[tool return] search_glossary -> [{\"term\": \"QLoRA\", \"lecture\": 2, \"definition\": \"ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法。より大きなモデルを小さなGPUで扱える。本講座の第2…\n[usage] RunUsage(cost=Decimal('0.0008251'), details={'text_prompt_tokens': 1342}, input_text_tokens=1342, input_tokens=1342, output_tokens=169, requests=2, tool_calls=2)\n",
+  "stderr": "",
+  "answer": "LoRAとQLoRAの違いは以下の通りです。\n\n* **LoRA**: 事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習する手法です。学習するパラメータが少なく、アダプタを小さいファイルで保存できます。\n* **QLoRA**: ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAによる学習を行う手法です。これにより、より大きなモデルを小さなGPUでも扱えるようになります。\n\n関係する回：第2回",
+  "tool_calls": [
+    {
+      "name": "search_glossary",
+      "arguments": {
+        "query": "LoRA"
+      }
+    },
+    {
+      "name": "search_glossary",
+      "arguments": {
+        "query": "QLoRA"
+      }
+    }
+  ],
+  "usage": "[usage] RunUsage(cost=Decimal('0.0008251'), details={'text_prompt_tokens': 1342}, input_text_tokens=1342, input_tokens=1342, output_tokens=169, requests=2, tool_calls=2)",
+  "requests": 2
+}
