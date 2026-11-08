@@ -1,0 +1,194 @@
+[
+  {
+    "question_id": "homework_levels",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "repeat": 1,
+    "command": [
+      "python",
+      "-m",
+      "app.agent",
+      "--trace",
+      "AIE2026の講座の宿題にある「3レベル」とは何ですか？"
+    ],
+    "started_at_utc": "2026-11-08T11:37:30.486043+00:00",
+    "finished_at_utc": "2026-11-08T11:37:33.550447+00:00",
+    "seconds": 3.064,
+    "returncode": 0,
+    "stdout": "[model] gemini-3.5-flash-lite\nAIE2026の宿題における「3レベル」とは、宿題の構成である以下の3段階のことを指します。\n\n- **基礎**：講義内容の確認\n- **実装**：自分でコードを書く\n- **発展**：調査や試行\n\nどれか1つに取り組めばその回の宿題は完了となり、原則として採点は行われません。\n\n第1回（関係する回：第1回）\n\n--- trace ---\n[tool call]   search_glossary({'query': '3レベル'})\n[tool return] search_glossary -> [{\"term\": \"宿題の3レベル\", \"lecture\": 1, \"definition\": \"AIE2026の宿題の構成。「基礎（講義内容の確認）」「実装（自分でコードを書く）」「発展（調査や試行）」の3段階があり、どれか1つに取り組…\n[usage] RunUsage(cost=Decimal('0.0005457'), details={'text_prompt_tokens': 869}, input_text_tokens=869, input_tokens=869, output_tokens=114, requests=2, tool_calls=1)\n",
+    "stderr": "",
+    "answer": "AIE2026の宿題における「3レベル」とは、宿題の構成である以下の3段階のことを指します。\n\n- **基礎**：講義内容の確認\n- **実装**：自分でコードを書く\n- **発展**：調査や試行\n\nどれか1つに取り組めばその回の宿題は完了となり、原則として採点は行われません。\n\n第1回（関係する回：第1回）",
+    "tool_calls": [
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "3レベル"
+        }
+      }
+    ],
+    "usage": "[usage] RunUsage(cost=Decimal('0.0005457'), details={'text_prompt_tokens': 869}, input_text_tokens=869, input_tokens=869, output_tokens=114, requests=2, tool_calls=1)",
+    "requests": 2
+  },
+  {
+    "question_id": "lora_qlora",
+    "question": "LoRAとQLoRAの違いは？",
+    "repeat": 1,
+    "command": [
+      "python",
+      "-m",
+      "app.agent",
+      "--trace",
+      "LoRAとQLoRAの違いは？"
+    ],
+    "started_at_utc": "2026-11-08T11:37:33.551160+00:00",
+    "finished_at_utc": "2026-11-08T11:37:36.660061+00:00",
+    "seconds": 3.109,
+    "returncode": 0,
+    "stdout": "[model] gemini-3.5-flash-lite\nLoRAとQLoRAの違いは以下の通りです。\n\n* **LoRA**: 事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法です。学習するパラメータが少なく、学習結果（アダプタ）も小さいファイルで保存できます。\n* **QLoRA**: ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法です。より大きなモデルを小さなGPUで扱えるようになります。\n\n（第2回）\n\n--- trace ---\n[tool call]   search_glossary({'query': 'LoRA'})\n[tool call]   search_glossary({'query': 'QLoRA'})\n[tool return] search_glossary -> [{\"term\": \"LoRA\", \"lecture\": 2, \"definition\": \"事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法。学習するパラ…\n[tool return] search_glossary -> [{\"term\": \"QLoRA\", \"lecture\": 2, \"definition\": \"ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法。より大きなモデルを小さなGPUで扱える。本講座の第2…\n[usage] RunUsage(cost=Decimal('0.0008121'), details={'text_prompt_tokens': 1282}, input_text_tokens=1282, input_tokens=1282, output_tokens=171, requests=2, tool_calls=2)\n",
+    "stderr": "",
+    "answer": "LoRAとQLoRAの違いは以下の通りです。\n\n* **LoRA**: 事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法です。学習するパラメータが少なく、学習結果（アダプタ）も小さいファイルで保存できます。\n* **QLoRA**: ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法です。より大きなモデルを小さなGPUで扱えるようになります。\n\n（第2回）",
+    "tool_calls": [
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "LoRA"
+        }
+      },
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "QLoRA"
+        }
+      }
+    ],
+    "usage": "[usage] RunUsage(cost=Decimal('0.0008121'), details={'text_prompt_tokens': 1282}, input_text_tokens=1282, input_tokens=1282, output_tokens=171, requests=2, tool_calls=2)",
+    "requests": 2
+  },
+  {
+    "question_id": "homework_levels",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "repeat": 2,
+    "command": [
+      "python",
+      "-m",
+      "app.agent",
+      "--trace",
+      "AIE2026の講座の宿題にある「3レベル」とは何ですか？"
+    ],
+    "started_at_utc": "2026-11-08T11:37:36.660757+00:00",
+    "finished_at_utc": "2026-11-08T11:37:39.200294+00:00",
+    "seconds": 2.54,
+    "returncode": 0,
+    "stdout": "[model] gemini-3.5-flash-lite\nAIE2026の宿題における「3レベル」とは、宿題の構成である**「基礎」「実装」「発展」の3段階**のことです。\n\nそれぞれ以下のような内容になっています。\n\n* **基礎**：講義内容の確認\n* **実装**：自分でコードを書く\n* **発展**：調査や試行\n\nどれか1つに取り組めばその回の宿題は完了となり、原則として採点はされません。ご自身のレベルや目的に合わせて選んで取り組んでみてくださいね。\n\n（関連する回：第1回）\n\n--- trace ---\n[tool call]   search_glossary({'query': '3レベル'})\n[tool return] search_glossary -> [{\"term\": \"宿題の3レベル\", \"lecture\": 1, \"definition\": \"AIE2026の宿題の構成。「基礎（講義内容の確認）」「実装（自分でコードを書く）」「発展（調査や試行）」の3段階があり、どれか1つに取り組…\n[usage] RunUsage(cost=Decimal('0.0006132'), details={'text_prompt_tokens': 869}, input_text_tokens=869, input_tokens=869, output_tokens=141, requests=2, tool_calls=1)\n",
+    "stderr": "",
+    "answer": "AIE2026の宿題における「3レベル」とは、宿題の構成である**「基礎」「実装」「発展」の3段階**のことです。\n\nそれぞれ以下のような内容になっています。\n\n* **基礎**：講義内容の確認\n* **実装**：自分でコードを書く\n* **発展**：調査や試行\n\nどれか1つに取り組めばその回の宿題は完了となり、原則として採点はされません。ご自身のレベルや目的に合わせて選んで取り組んでみてくださいね。\n\n（関連する回：第1回）",
+    "tool_calls": [
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "3レベル"
+        }
+      }
+    ],
+    "usage": "[usage] RunUsage(cost=Decimal('0.0006132'), details={'text_prompt_tokens': 869}, input_text_tokens=869, input_tokens=869, output_tokens=141, requests=2, tool_calls=1)",
+    "requests": 2
+  },
+  {
+    "question_id": "lora_qlora",
+    "question": "LoRAとQLoRAの違いは？",
+    "repeat": 2,
+    "command": [
+      "python",
+      "-m",
+      "app.agent",
+      "--trace",
+      "LoRAとQLoRAの違いは？"
+    ],
+    "started_at_utc": "2026-11-08T11:37:39.201027+00:00",
+    "finished_at_utc": "2026-11-08T11:37:42.853543+00:00",
+    "seconds": 3.653,
+    "returncode": 0,
+    "stdout": "[model] gemini-3.5-flash-lite\nLoRAとQLoRAの違いは以下の通りです。\n\n- **LoRA**: 事前学習済みの重みは固定したまま、重みの更新分を2つの小さな低ランク行列の積で表し、その小さな行列だけを学習するPEFT手法です。学習するパラメータが少なくて済みます。\n- **QLoRA**: ベースモデルの重みを4ビットなどに量子化してメモリを大幅に節約したうえで、LoRAによる学習を行う手法です。これにより、より大きなモデルを小さなGPUでも扱えるようになります。\n\n第2回</code>\n\n\n--- trace ---\n[tool call]   search_glossary({'query': 'LoRA'})\n[tool call]   search_glossary({'query': 'QLoRA'})\n[tool return] search_glossary -> [{\"term\": \"LoRA\", \"lecture\": 2, \"definition\": \"事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法。学習するパラ…\n[tool return] search_glossary -> [{\"term\": \"QLoRA\", \"lecture\": 2, \"definition\": \"ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法。より大きなモデルを小さなGPUで扱える。本講座の第2…\n[usage] RunUsage(cost=Decimal('0.0007871'), details={'text_prompt_tokens': 1282}, input_text_tokens=1282, input_tokens=1282, output_tokens=161, requests=2, tool_calls=2)\n",
+    "stderr": "",
+    "answer": "LoRAとQLoRAの違いは以下の通りです。\n\n- **LoRA**: 事前学習済みの重みは固定したまま、重みの更新分を2つの小さな低ランク行列の積で表し、その小さな行列だけを学習するPEFT手法です。学習するパラメータが少なくて済みます。\n- **QLoRA**: ベースモデルの重みを4ビットなどに量子化してメモリを大幅に節約したうえで、LoRAによる学習を行う手法です。これにより、より大きなモデルを小さなGPUでも扱えるようになります。\n\n第2回</code>",
+    "tool_calls": [
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "LoRA"
+        }
+      },
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "QLoRA"
+        }
+      }
+    ],
+    "usage": "[usage] RunUsage(cost=Decimal('0.0007871'), details={'text_prompt_tokens': 1282}, input_text_tokens=1282, input_tokens=1282, output_tokens=161, requests=2, tool_calls=2)",
+    "requests": 2
+  },
+  {
+    "question_id": "homework_levels",
+    "question": "AIE2026の講座の宿題にある「3レベル」とは何ですか？",
+    "repeat": 3,
+    "command": [
+      "python",
+      "-m",
+      "app.agent",
+      "--trace",
+      "AIE2026の講座の宿題にある「3レベル」とは何ですか？"
+    ],
+    "started_at_utc": "2026-11-08T11:37:42.854260+00:00",
+    "finished_at_utc": "2026-11-08T11:37:45.695711+00:00",
+    "seconds": 2.841,
+    "returncode": 0,
+    "stdout": "[model] gemini-3.5-flash-lite\nAIE2026の宿題における「3レベル」とは、宿題の構成を示すもので、以下の3つの段階に分かれています。\n\n1. **基礎**：講義内容の確認\n2. **実装**：自分でコードを書く\n3. **発展**：調査や試行\n\nどれか1つに取り組めばその回の宿題は完了となり、原則として採点は行われません。\n\n（関連：第1回）\n\n--- trace ---\n[tool call]   search_glossary({'query': '3レベル'})\n[tool return] search_glossary -> [{\"term\": \"宿題の3レベル\", \"lecture\": 1, \"definition\": \"AIE2026の宿題の構成。「基礎（講義内容の確認）」「実装（自分でコードを書く）」「発展（調査や試行）」の3段階があり、どれか1つに取り組…\n[usage] RunUsage(cost=Decimal('0.0005507'), details={'text_prompt_tokens': 869}, input_text_tokens=869, input_tokens=869, output_tokens=116, requests=2, tool_calls=1)\n",
+    "stderr": "",
+    "answer": "AIE2026の宿題における「3レベル」とは、宿題の構成を示すもので、以下の3つの段階に分かれています。\n\n1. **基礎**：講義内容の確認\n2. **実装**：自分でコードを書く\n3. **発展**：調査や試行\n\nどれか1つに取り組めばその回の宿題は完了となり、原則として採点は行われません。\n\n（関連：第1回）",
+    "tool_calls": [
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "3レベル"
+        }
+      }
+    ],
+    "usage": "[usage] RunUsage(cost=Decimal('0.0005507'), details={'text_prompt_tokens': 869}, input_text_tokens=869, input_tokens=869, output_tokens=116, requests=2, tool_calls=1)",
+    "requests": 2
+  },
+  {
+    "question_id": "lora_qlora",
+    "question": "LoRAとQLoRAの違いは？",
+    "repeat": 3,
+    "command": [
+      "python",
+      "-m",
+      "app.agent",
+      "--trace",
+      "LoRAとQLoRAの違いは？"
+    ],
+    "started_at_utc": "2026-11-08T11:37:45.696803+00:00",
+    "finished_at_utc": "2026-11-08T11:37:48.671286+00:00",
+    "seconds": 2.975,
+    "returncode": 0,
+    "stdout": "[model] gemini-3.5-flash-lite\nLoRAとQLoRAの違いは以下の通りです。\n\n- **LoRA**\n  事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法です。学習するパラメータが少なく、学習結果（アダプタ）も小さいファイルで保存できます。\n\n- **QLoRA**\n  ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法です。より大きなモデルを小さなGPUで扱うことができます。\n\n（第2回）\n\n--- trace ---\n[tool call]   search_glossary({'query': 'LoRA'})\n[tool call]   search_glossary({'query': 'QLoRA'})\n[tool return] search_glossary -> [{\"term\": \"LoRA\", \"lecture\": 2, \"definition\": \"事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法。学習するパラ…\n[tool return] search_glossary -> [{\"term\": \"QLoRA\", \"lecture\": 2, \"definition\": \"ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法。より大きなモデルを小さなGPUで扱える。本講座の第2…\n[usage] RunUsage(cost=Decimal('0.0008146'), details={'text_prompt_tokens': 1282}, input_text_tokens=1282, input_tokens=1282, output_tokens=172, requests=2, tool_calls=2)\n",
+    "stderr": "",
+    "answer": "LoRAとQLoRAの違いは以下の通りです。\n\n- **LoRA**\n  事前学習済みの重みは固定したまま、重みの更新分を2つの小さな行列の積（低ランク行列）で表し、その小さな行列だけを学習するPEFT手法です。学習するパラメータが少なく、学習結果（アダプタ）も小さいファイルで保存できます。\n\n- **QLoRA**\n  ベースモデルの重みを4ビットなどに量子化してメモリを節約したうえで、LoRAで学習する手法です。より大きなモデルを小さなGPUで扱うことができます。\n\n（第2回）",
+    "tool_calls": [
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "LoRA"
+        }
+      },
+      {
+        "name": "search_glossary",
+        "arguments": {
+          "query": "QLoRA"
+        }
+      }
+    ],
+    "usage": "[usage] RunUsage(cost=Decimal('0.0008146'), details={'text_prompt_tokens': 1282}, input_text_tokens=1282, input_tokens=1282, output_tokens=172, requests=2, tool_calls=2)",
+    "requests": 2
+  }
+]
