@@ -1,0 +1,50 @@
+{
+  "started_at": "2026-11-23T04:43:35.751782+00:00",
+  "agent_args": [
+    "--trace",
+    "第2回の説明では、LoRAは何を固定し何を学習しますか？ QLoRAは何を加えますか？"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "rag_top_k": 1,
+  "source_sha256": "f6022c177ec1b5575b56d21307a5ae2aa09c586047398a17e1e4b86a56e99dce",
+  "index_sha256": "600d7a3633d84c21b6b26d511f9cd701d7dbee32bfe8eab0fd6fee3affb0f69e",
+  "answer": "第2回の講義資料によると、LoRAとQLoRAの内容はそれぞれ以下のようになっています。\n\n* **LoRA**\n  * **何を固定するか：** 元の重み（$W$）を固定して学習しません（第2回・PDF p.52）。\n  * **何を学習するか：** 小さな行列（$A$と$B$）の「差分」だけを学習します（第2回・PDF p.52）。\n* **QLoRA**\n  * **何を加える（追加する）か：** LoRAの手法に加えて、元の重みを**4bit**に圧縮（数値を粗く保存）するという工夫が加えられています（第2回・PDF p.52）。",
+  "elapsed_seconds": 3.247593624982983,
+  "usage": {
+    "input_tokens": 1189,
+    "output_tokens": 185,
+    "requests": 2,
+    "generation_cost_usd": "0.0008192"
+  },
+  "events": [
+    {
+      "type": "call",
+      "tool": "search_materials",
+      "id": "call_1758444897689754566",
+      "args": {
+        "query": "LoRA QLoRA 固定 学習"
+      }
+    },
+    {
+      "type": "return",
+      "tool": "search_materials",
+      "id": "call_1758444897689754566",
+      "content": {
+        "results": [
+          {
+            "page_id": "lec02-main-p052",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "LoRA と QLoRA ：大きなモデルも GPU 1 台で調整できる",
+            "page": 52,
+            "content": "4/4 　選んだモデルを、いつ・どう直すか\nLoRA と QLoRA ：大きなモデルも GPU 1 台で調整できる\n元の重みは固定し、小さな「差分」だけを学習する（ LoRA ）。さらに元の重みを 4bit に圧縮する（ QLoRA ）\n出典： E. J. Hu et al. 「 LoRA 」（ ICLR 2022 ）／ T. Dettmers et al. 「 QLoRA 」（ NeurIPS 2023 ）。演習では transformers ・ peft ・ bitsandbytes ・ TRL を使用\nLoRA （ Hu et al. Fig.1 ）： A と B だけを学習する\n青：元の重み W\n固定して学習しない。 QLoRA では\n4bit （数値を粗く保存）にして\n約 1/4 。 7B なら約 4GB\n橙：小さな行列 A ・ B\nこれだけを学習。細長い 2 つの\n行列の積で、変化分を表す（低ランク）\nイメージ\n本体はそのままに、薄い「付箋」を\n書き足す。学習するのは全体の\n1% 未満にもできる\n650 億\nパラメータのモデルを\n48GB GPU 1 台\nで微調整（ QLoRA 論文）\n• Colab の GPU （例： 16GB ）でも、\n数十億パラメータ級なら調整できる。今日の\n演習はこれ\n• データの準備・評価・運用の手間は別にかかる\n© Matsuo-Iwasawa Lab, The University of Tokyo 52\n\n【図表・画像内の補足文字起こし】\nLoRA図：Pretrained Weights W ∈ R^(d×d)、x、h、A ~ N(0, σ²)、B = 0、d、r。",
+            "distance": 0.2296837419271469
+          }
+        ]
+      }
+    }
+  ],
+  "exit_code": 0
+}

@@ -1,0 +1,29 @@
+[model] gemini-3.5-flash-lite
+[full-context] 入力227,971文字
+                 pydantic-ai v2.57.0 • Python 3.12.10
+      / \
+     /   \       agent: agent • model: google:gemini-3.5-flash-lite • tools: 0 • capabilities: 0
+   /___.___\
+  /    |    \    observability: off — see every model and tool call live, with cost
+/      |      \    set it up free with Logfire and a GitHub login: https://pydantic.dev/ai-setup.md
+`---.._|_..---'    or use any OpenTelemetry backend: https://pydantic.dev/docs/ai/logfire/#otel
+
+                 goes away once observability is on — or PYDANTIC_AI_NO_BANNER=1
+資料を確認したところ、第2回の講義資料および演習資料に該当する記載があります。
+
+* **LoRAが固定し学習するもの**
+  - 資料: `lec02-main / 基盤モデルの仕組み`
+  - ページ: PDF p.52
+  - 内容: 元の重みは固定し、小さな差分（小さな行列 A・B）だけを学習します。
+
+* **QLoRAが加えるもの**
+  - 資料: `lec02-main / 基盤モデルの仕組み`
+  - ページ: PDF p.51, p.52
+  - 内容: LoRAの仕組みに加え、元の重みを4bitに圧縮して省メモリ化する点を加えます。
+
+宿題を進める際のヒントとして、LoRAとQLoRAの仕組みを整理する際は「モデルの本体を固定して差分だけを学習する点」と「メモリを節約するために重みを圧縮する点」に着目して考えてみてください。
+
+--- trace ---
+[time] 回答完了まで 2.64 秒（検索・埋め込みを含む）
+[usage] 入力 117,025 tokens / 出力 218 tokens / モデル応答 1 回
+[cost] 生成APIの推定コスト: $0.004696 USD（埋め込み・索引構築分は含まない）

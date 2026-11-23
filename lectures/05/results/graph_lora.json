@@ -1,0 +1,256 @@
+{
+  "started_at": "2026-11-23T04:42:43.940697+00:00",
+  "agent_args": [
+    "--graph",
+    "--trace",
+    "第2回の説明では、LoRAは何を固定し何を学習しますか？ QLoRAは何を加えますか？"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "rag_top_k": 5,
+  "source_sha256": "f6022c177ec1b5575b56d21307a5ae2aa09c586047398a17e1e4b86a56e99dce",
+  "index_sha256": "600d7a3633d84c21b6b26d511f9cd701d7dbee32bfe8eab0fd6fee3affb0f69e",
+  "answer": "第2回の資料によると、LoRAとQLoRAの仕組みについて以下のように説明されています。\n\n* **LoRAが固定するものと学習するもの**\n  * 元の重みは固定し、学習しない（本体はそのままにする） [第2回・PDF p.52]。\n  * 代わりに、細長い2つの小さな行列（低ランク行列）の積で表される変化分（小さな行列A・B）だけを学習する [第2回・PDF p.52]。\n\n* **QLoRAが加えるもの**\n  * LoRAの手法に加えて、**「元の重みを4bitに圧縮すること」**を加える [第2回・PDF p.51, p.52]。\n\nこれによって、大きなモデルであってもGPU1台で効率よく微調整（Fine-Tuning）できるようになっています [第2回・PDF p.52]。",
+  "elapsed_seconds": 3.4432251669932157,
+  "usage": {
+    "input_tokens": 5775,
+    "output_tokens": 217,
+    "requests": 2,
+    "generation_cost_usd": "0.0022750"
+  },
+  "events": [
+    {
+      "type": "call",
+      "tool": "search_graph",
+      "id": "call_12796728617034916648",
+      "args": {
+        "query": "LoRA 固定 学習 QLoRA 追加"
+      }
+    },
+    {
+      "type": "return",
+      "tool": "search_graph",
+      "id": "call_12796728617034916648",
+      "content": {
+        "seeds": [
+          {
+            "page_id": "lec02-main-p052",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "LoRA と QLoRA ：大きなモデルも GPU 1 台で調整できる",
+            "page": 52,
+            "content": "4/4 　選んだモデルを、いつ・どう直すか\nLoRA と QLoRA ：大きなモデルも GPU 1 台で調整できる\n元の重みは固定し、小さな「差分」だけを学習する（ LoRA ）。さらに元の重みを 4bit に圧縮する（ QLoRA ）\n出典： E. J. Hu et al. 「 LoRA 」（ ICLR 2022 ）／ T. Dettmers et al. 「 QLoRA 」（ NeurIPS 2023 ）。演習では transformers ・ peft ・ bitsandbytes ・ TRL を使用\nLoRA （ Hu et al. Fig.1 ）： A と B だけを学習する\n青：元の重み W\n固定して学習しない。 QLoRA では\n4bit （数値を粗く保存）にして\n約 1/4 。 7B なら約 4GB\n橙：小さな行列 A ・ B\nこれだけを学習。細長い 2 つの\n行列の積で、変化分を表す（低ランク）\nイメージ\n本体はそのままに、薄い「付箋」を\n書き足す。学習するのは全体の\n1% 未満にもできる\n650 億\nパラメータのモデルを\n48GB GPU 1 台\nで微調整（ QLoRA 論文）\n• Colab の GPU （例： 16GB ）でも、\n数十億パラメータ級なら調整できる。今日の\n演習はこれ\n• データの準備・評価・運用の手間は別にかかる\n© Matsuo-Iwasawa Lab, The University of Tokyo 52\n\n【図表・画像内の補足文字起こし】\nLoRA図：Pretrained Weights W ∈ R^(d×d)、x、h、A ~ N(0, σ²)、B = 0、d、r。",
+            "distance": 0.23502159118652344,
+            "hops": 0,
+            "path": [
+              {
+                "id": "lec02-main-p052",
+                "title": "LoRA と QLoRA ：大きなモデルも GPU 1 台で調整できる"
+              }
+            ]
+          },
+          {
+            "page_id": "lec02-main-p051",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "PEFT ：モデル全体ではなく、一部だけを学習する",
+            "page": 51,
+            "content": "4/4 　選んだモデルを、いつ・どう直すか\nPEFT ：モデル全体ではなく、一部だけを学習する\n全パラメータを更新する FT は重い。少数のパラメータだけを学習する方法（ PEFT ）が主流になった\n出典：各手法の原論文（ Houlsby+ 2019 ／ Li & Liang 2021 ／ Lester+ 2021 ／ Hu+ 2022 ）。 Hugging Face PEFT ライブラリで利用可能\nどこを学習するか（ Dettmers et al. Fig.1 ）\nFull Fine-Tuning\n全パラメータを更新。メモリも保存容量も大きい\nLoRA\n本体は固定し、小さな追加部分だけ更新\nQLoRA\nさらに本体を 4bit に圧縮して省メモリ\nPEFT の主な方法\nアダプタ\n層の間に小さな層を差し込み、そこだけ学習\nHoulsby et al. 2019\nプレフィックス／プロンプトチューニング\n入力の前に学習できる「仮想トークン」を付ける\nLi & Liang 2021 ／ Lester et al. 2021\nLoRA\n重みの変化を、細長い 2 つの小さな行列の積（低ランク）で表して学習\nHu et al. 2022 　← 現在最も広く使われる\nQLoRA\nLoRA ＋元の重みを 4bit に圧縮。さらに少ないメモリで\nDettmers et al. 2023 　← 次のスライド\n© Matsuo-Iwasawa Lab, The University of Tokyo 51\n\n【図表・画像内の補足文字起こし】\n比較図：Full Finetuning (No Adapters)／LoRA／QLoRA。Optimizer、Adapters、16-bit Transformer、4-bit Transformer。",
+            "distance": 0.25241583585739136,
+            "hops": 0,
+            "path": [
+              {
+                "id": "lec02-main-p051",
+                "title": "PEFT ：モデル全体ではなく、一部だけを学習する"
+              }
+            ]
+          },
+          {
+            "page_id": "lec02-main-p060",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "今日の演習： QLoRA で出力形式を矯正し、効果を測る",
+            "page": 60,
+            "content": "演習\n今日の演習： QLoRA で出力形式を矯正し、効果を測る\n事前宿題（ Colab ＋ FastAPI ＋ ngrok での API 化、温度による揺れの観察）の続きから\n準備\n事前宿題で詰まった点を\n解消する\n前を測る\n形式遵守率を測る（同じ\n温度で複数回）\nQLoRA で学習\n形式を守った手本で\n微調整する\n後を測る\nFT 後のモデルに\n差し替え、同じ質問で\n測る\n対照：知識の質問\n変わらないはず。\n変わったら評価を疑う\n形式遵守率＝ JSON として読み込め、決めた項目（ answer ・ slide ・ confidence ）がそろった回答の割合。「直った」は、前後で\n同じ評価をして初めて言える\n© Matsuo-Iwasawa Lab, The University of Tokyo 60",
+            "distance": 0.27801385521888733,
+            "hops": 0,
+            "path": [
+              {
+                "id": "lec02-main-p060",
+                "title": "今日の演習： QLoRA で出力形式を矯正し、効果を測る"
+              }
+            ]
+          }
+        ],
+        "expanded": [
+          {
+            "page_id": "lec02-main-p053",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "チャットボットの場合：何を FT し、何を FT しないか",
+            "page": 53,
+            "content": "4/4 　選んだモデルを、いつ・どう直すか\nチャットボットの場合：何を FT し、何を FT しないか\n今日の演習のテーマ。実務では、まずプロンプトや API の形式指定を試す\nFT で直す：出力の形式\n必ずこの形式（ JSON）で返してほしい\n{\n  \"answer\": \"RAGとは、資料を検索して… \",\n  \"slide\": 13,\n  \"confidence\": \"high\"\n}\nFT では直らない：知識\n「第 2 回の演習で使う GPU は何？」のように、資料にしかない\n事実は、 FT しても答えられるようにはなりにくい\n→ 検索して渡す（ RAG 、第 5 回）\n今回の手本には事実を入れていないので、知識が増えないのは当然。\nそれを測って確かめる\n演習で JSON を使うのは、効果を数えやすいから。実務で形だけ守らせるなら API の構造化出力が先。 FT が効くのは、\n口調・根拠の付け方など書式で縛れない振る舞い\n© Matsuo-Iwasawa Lab, The University of Tokyo 53",
+            "hops": 1,
+            "path": [
+              {
+                "id": "lec02-main-p052",
+                "title": "LoRA と QLoRA ：大きなモデルも GPU 1 台で調整できる"
+              },
+              {
+                "id": "lec02-main-p053",
+                "title": "チャットボットの場合：何を FT し、何を FT しないか"
+              }
+            ]
+          },
+          {
+            "page_id": "lec02-main-p050",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "判断の順番：測る → 分ける → プロンプト → Fine-Tuning",
+            "page": 50,
+            "content": "4/4 　選んだモデルを、いつ・どう直すか\n判断の順番：測る → 分ける → プロンプト → Fine-Tuning\n第 1 回の「モデル・手法の大別」の具体版。安く速く試せる方法から順に、評価で確かめながら進む\n1\n まず評価セットを作る\n 直ったかどうかを測るため（第 4 回）\n2\n 直したいのは知識？振る舞い？\n 知識 → 検索して渡す（ RAG 、第 5 回）\n3\n プロンプト（指示・例示）で直る？\n 直る → それで十分（第 9 回）\n4\n それでも直らない振る舞いがある\n → Fine-Tuning を検討\n© Matsuo-Iwasawa Lab, The University of Tokyo 50",
+            "hops": 1,
+            "path": [
+              {
+                "id": "lec02-main-p051",
+                "title": "PEFT ：モデル全体ではなく、一部だけを学習する"
+              },
+              {
+                "id": "lec02-main-p050",
+                "title": "判断の順番：測る → 分ける → プロンプト → Fine-Tuning"
+              }
+            ]
+          },
+          {
+            "page_id": "lec02-main-p059",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "第 2 回のまとめ： 4 つの芯と、明日やること",
+            "page": 59,
+            "content": "まとめ\n第 2 回のまとめ： 4 つの芯と、明日やること\n仕組みが分かると、次の一手が決まる\n芯（なぜ） 明日やること\n1\n LLM は確率で次の言葉を選ぶ\n 同じ質問を複数回＋答えられない質問で測ってから使う（ガイド 1 ）\n2\n 渡す・選ぶ／直す／考えさせる\n症状から打ち手を選ぶ。知識は渡す・選ぶ、答え方はまずプロンプト、難問は\n考えさせる（ガイド 2 ）\n3\n 地図を持ち、「コスト＜効果」で選ぶ\n 候補を 3 つ選び、自分の評価セットで精度・料金・待ち時間を比べる（ガイド 3 ）\n4\n FT は振る舞いに強く、知識は苦手\nチェックリストの 6 項目に✓が付いてから、 LoRA ／ QLoRA で小さく始める\n（ガイド 4 ）\n次の一歩　 PM 志望：自分の題材で評価用の質問を 20 問書く　エンジニア志望：演習の JSON を、 API の構造化出力とも比べる　\nML 専攻： Gekhman et al. 2024 ・ Biderman et al. 2024 を読む\n© Matsuo-Iwasawa Lab, The University of Tokyo 59",
+            "hops": 1,
+            "path": [
+              {
+                "id": "lec02-main-p060",
+                "title": "今日の演習： QLoRA で出力形式を矯正し、効果を測る"
+              },
+              {
+                "id": "lec02-main-p059",
+                "title": "第 2 回のまとめ： 4 つの芯と、明日やること"
+              }
+            ]
+          },
+          {
+            "page_id": "lec02-main-p061",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "演習の進め方と提出物（仮）",
+            "page": 61,
+            "content": "演習\n演習の進め方と提出物（仮）\n時間は目安。前後で「同じ質問・同じ温度・同じ回数」で測ることが大事\n1 準備 10 分 事前宿題の不具合を直し、 API が動くことを確かめる\n2 FT 前を測る 10 分\n評価用 30 問 ×3 回で形式遵守率。普通の質問 10 問の\n答えも保存\n3 QLoRA で学習 20 分 手本 200 件で学習（ Colab の GPU で十数分）\n4 FT 後を測る 10 分 モデルを差し替え、 2 と同じ質問・温度・回数で測る\n5 対照：知識の質問 5 分\n手本に事実を入れていないので、変わらないはず。変わったら\n評価か学習の誤りを疑う\n提出物\n• 前後の比較表（形式遵守率・普通の\n質問の答え）\n• 直らなかった質問の例を 2 つ\n• 考察を 3 行：何が直り、何が直らず、\nなぜか\n評価用の 30 問は学習用と重ならないものを使う。差が小さいときは誤差の範囲かもしれないので、 3 回分のばらつきも書く\n© Matsuo-Iwasawa Lab, The University of Tokyo 61",
+            "hops": 1,
+            "path": [
+              {
+                "id": "lec02-main-p060",
+                "title": "今日の演習： QLoRA で出力形式を矯正し、効果を測る"
+              },
+              {
+                "id": "lec02-main-p061",
+                "title": "演習の進め方と提出物（仮）"
+              }
+            ]
+          },
+          {
+            "page_id": "lec02-main-p049",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "FT は「コストを下げる」ためにも使う",
+            "page": 49,
+            "content": "4/4 　選んだモデルを、いつ・どう直すか\nFT は「コストを下げる」ためにも使う\n指示や手本をモデルに覚えさせればプロンプトが短くなり、小さいモデルでも同じ振る舞いを出せる\n出典：説明用の試算。単価は付録「費用の試算」と同じ仮の値（ 100 万トークンあたり 大：入力 $3 ・出力 $15 ／小：入力 $0.25 ・出力 $1.25 ）\n考えてみよう： FT すると、何倍安くなる？（ 1 講義 200 問の料金）\nFT 前：大きいモデル＋長いプロンプト\n入力 3,100 （指示 1,000 ＋手本 2,000 ＋質問 100 ）・出力 500\n約 $3.4\nFT 後：小さいモデルを FT ＋短いプロンプト\n入力 200 （指示 100 ＋質問 100 ）・出力 500\n約 $0.14\nFT するかは「コスト＜効果」で決まる\n1 問あたりの削減額 × 質問数\n＞　 FT の費用（手本づくり・学習・評価）\n• この授業だけ（ 13 回）：削減は約 $42 。\n手本づくりの手間の方が大きい\n• 全学に広げる（ 100 倍）：約 $4,200 。 FT が\n見合ってくる\nただし：同じ長い指示は API の「プロンプトキャッシュ」（同じ部分を再利用して割安にする機能）で安くできる場合もある。 FT 済みモデルの\n単価が元より高いサービスもあるので、実際の価格で比べる\n© Matsuo-Iwasawa Lab, The University of Tokyo 49",
+            "hops": 2,
+            "path": [
+              {
+                "id": "lec02-main-p051",
+                "title": "PEFT ：モデル全体ではなく、一部だけを学習する"
+              },
+              {
+                "id": "lec02-main-p050",
+                "title": "判断の順番：測る → 分ける → プロンプト → Fine-Tuning"
+              },
+              {
+                "id": "lec02-main-p049",
+                "title": "FT は「コストを下げる」ためにも使う"
+              }
+            ]
+          },
+          {
+            "page_id": "lec02-main-p062",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "次回： AI エージェント。今日の性質が設計の前提になる",
+            "page": 62,
+            "content": "次回予告\n次回： AI エージェント。今日の性質が設計の前提になる\nエージェント＝今日のモデルに、道具・ループ・記憶を付けて「行動」させる仕組み（今日の 5 枚目の図の外側）\n今日わかったこと エージェントでは、こう効いてくる\n確率で選ぶ（答えが揺れる）\n 同じ依頼でも、毎回ちがう手順になる。 1 回の成功を信じず、複数回測る\nそれらしく誤る\n ない道具を呼ぶ・結果を読み違える。結果を確かめる仕組みと、止める条件が要る\n長い文脈を均等に使えない\n 作業が長くなると、前の指示や結果を見落とす。記憶の整理が要る\n形式を守らせる（今日の演習）\n 道具の呼び出しは JSON などの決まった形式。形式を守る力が土台になる\nコスト＜効果\n ループするほどトークンが増える。どこを AI に任せ、どこをプログラムで決めるか\n今日の最後に（ 1 分）　フォームに「一番わからなかったこと」と「明日やること 1 つ」を書く。次回の冒頭で取り上げる\n次回までに（仮）　演習の結果を提出。 ChatGPT などが検索するとき、何をしているか観察してくる\n© Matsuo-Iwasawa Lab, The University of Tokyo 62",
+            "hops": 2,
+            "path": [
+              {
+                "id": "lec02-main-p060",
+                "title": "今日の演習： QLoRA で出力形式を矯正し、効果を測る"
+              },
+              {
+                "id": "lec02-main-p061",
+                "title": "演習の進め方と提出物（仮）"
+              },
+              {
+                "id": "lec02-main-p062",
+                "title": "次回： AI エージェント。今日の性質が設計の前提になる"
+              }
+            ]
+          },
+          {
+            "page_id": "lec02-main-p047",
+            "document_id": "lec02-main",
+            "lecture": 2,
+            "document_title": "基盤モデルの仕組み",
+            "section": "選んだモデルを、いつ・どう直すか",
+            "title": "根拠と諸説：知識の追加は RAG が効きやすい",
+            "page": 47,
+            "content": "4/4 　選んだモデルを、いつ・どう直すか\n根拠と諸説：知識の追加は RAG が効きやすい\nただし「 FT で知識が全く入らない」わけではない。例外も知ったうえで、基本線として覚える\n出典： Ovadia+ EMNLP 2024 ／ Gekhman+ EMNLP 2024 ／ Biderman+ TMLR 2024 ／ Zhou+ (LIMA) NeurIPS 2023\n研究の報告（基本線）\nOvadia et al. （ 2024 ）\n知識を問う課題で、 RAG が「文書をそのまま学習させる FT 」を一貫して\n上回った\nGekhman et al. （ 2024 ）\n新しい知識を含む手本は覚えるのが遅く、覚えるほど誤り\n（ハルシネーション）が増える傾向\nBiderman et al. （ 2024 ）\nLoRA は全体を学習する FT より「学ぶ量が少なく、忘れる量も少ない」。\n小さな調整向き\n例外・諸説\n• 大量の文章で継続事前学習（ CPT ）すれば、\n言語・専門知識も入る（日本語の Swallow など）\n• 同じ事実を多様に言い換えて学習させると、\nFT でも知識が入りやすくなる\n• 振る舞いは、良質な手本 1,000 件程度でも\n大きく変わる（ LIMA ）\n• 大きいモデルの振る舞いを小さいモデルに移す\n（蒸留）ことで、速く安くする目的でも使われる\n© Matsuo-Iwasawa Lab, The University of Tokyo 47",
+            "hops": 2,
+            "path": [
+              {
+                "id": "lec02-main-p052",
+                "title": "LoRA と QLoRA ：大きなモデルも GPU 1 台で調整できる"
+              },
+              {
+                "id": "term:lora",
+                "title": "LoRA"
+              },
+              {
+                "id": "lec02-main-p047",
+                "title": "根拠と諸説：知識の追加は RAG が効きやすい"
+              }
+            ]
+          }
+        ],
+        "max_hops": 2
+      }
+    }
+  ],
+  "exit_code": 0
+}

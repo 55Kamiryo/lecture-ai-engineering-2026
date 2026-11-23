@@ -1,0 +1,22 @@
+{
+  "started_at": "2026-11-23T04:41:23.078222+00:00",
+  "agent_args": [
+    "--full-context",
+    "--trace",
+    "第2回の説明では、LoRAは何を固定し何を学習しますか？ QLoRAは何を加えますか？"
+  ],
+  "model": "gemini-3.5-flash-lite",
+  "rag_top_k": 5,
+  "source_sha256": "f6022c177ec1b5575b56d21307a5ae2aa09c586047398a17e1e4b86a56e99dce",
+  "index_sha256": "600d7a3633d84c21b6b26d511f9cd701d7dbee32bfe8eab0fd6fee3affb0f69e",
+  "answer": "資料を確認したところ、第2回の講義資料および演習資料に該当する記載があります。\n\n* **LoRAが固定し学習するもの**\n  - 資料: `lec02-main / 基盤モデルの仕組み`\n  - ページ: PDF p.52\n  - 内容: 元の重みは固定し、小さな差分（小さな行列 A・B）だけを学習します。\n\n* **QLoRAが加えるもの**\n  - 資料: `lec02-main / 基盤モデルの仕組み`\n  - ページ: PDF p.51, p.52\n  - 内容: LoRAの仕組みに加え、元の重みを4bitに圧縮して省メモリ化する点を加えます。\n\n宿題を進める際のヒントとして、LoRAとQLoRAの仕組みを整理する際は「モデルの本体を固定して差分だけを学習する点」と「メモリを節約するために重みを圧縮する点」に着目して考えてみてください。",
+  "elapsed_seconds": 2.636372125009075,
+  "usage": {
+    "input_tokens": 117025,
+    "output_tokens": 218,
+    "requests": 1,
+    "generation_cost_usd": "0.00469646"
+  },
+  "events": [],
+  "exit_code": 0
+}
